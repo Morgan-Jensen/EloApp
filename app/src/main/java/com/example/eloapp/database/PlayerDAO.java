@@ -1,5 +1,6 @@
 package com.example.eloapp.database;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -11,7 +12,7 @@ import java.util.List;
 public interface PlayerDAO {
 
     @Query("select * from Player")
-    List<Player> getAll();
+    LiveData<List<Player>> getAll();
 
     @Insert
     void insert(Player player);

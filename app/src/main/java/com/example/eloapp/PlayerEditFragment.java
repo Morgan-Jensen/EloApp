@@ -40,17 +40,17 @@ public class PlayerEditFragment extends Fragment {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        AppDatabase.getInstance(getContext())
-                                .playerDAO()
-                                .insert(new Player(name));
-
-                        List<Player> players = AppDatabase.getInstance(getContext())
-                                .playerDAO()
-                                .getAll();
-
-                        for (Player player : players) {
-                            Log.d("db", "Player" + player.toString());
-                        }
+//                        AppDatabase.getInstance(getContext())
+//                                .playerDAO()
+//                                .insert(new Player(name));
+//
+//                        List<Player> players = AppDatabase.getInstance(getContext())
+//                                .playerDAO()
+//                                .getAll();
+//
+//                        for (Player player : players) {
+//                            Log.d("db", "Player" + player.toString());
+//                        }
                     }
                 }).start();
             }
