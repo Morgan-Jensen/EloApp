@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:title="Save"
-        android:id="@+id/menu_create"
+        android:id="@+id/menu_save"
         app:showAsAction="always"
         android:icon="@drawable/ic_baseline_save_24"/>
 </menu>

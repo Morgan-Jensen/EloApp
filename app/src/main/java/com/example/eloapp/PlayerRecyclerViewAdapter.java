@@ -1,5 +1,6 @@
 package com.example.eloapp;
 
+import android.os.Bundle;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +52,14 @@ public class PlayerRecyclerViewAdapter extends RecyclerView.Adapter<PlayerRecycl
             holder.player = player;
             holder.txtPlayerName.setText(player.getName());
             holder.txtPlayerElo.setText(Integer.toString(player.getElo()));
+
+            holder.root.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Bundle bundle = new Bundle();
+                    bundle.putInt("player_pk", player.getPid());
+                }
+            });
         }
 
     }
@@ -65,4 +74,6 @@ public class PlayerRecyclerViewAdapter extends RecyclerView.Adapter<PlayerRecycl
         this.players.addAll(players);
         notifyDataSetChanged();
     }
+
+
 }
