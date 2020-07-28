@@ -40,6 +40,32 @@ public class NewPlayerDialogFragment extends DialogFragment {
         toolbar = (Toolbar)root.findViewById(R.id.toolbar);
         txtPlayerName = (TextInputEditText)root.findViewById(R.id.txtPlayerName_Dialog);
 
+        Bundle bundle = this.getArguments();
+
+        if (bundle != null) {
+            isNew = false;
+            player_pkTwo = bundle.getInt("player_pk");
+            toolbar.setTitle("Edit Player");
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    player = AppDatabase.getInstance(getContext())
+                            .playerDAO()
+                            .getByPid(player_pkTwo);
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtPlayerName.setText(player.getName());
+                        }
+                    });
+                }
+            }).start();
+        } else {
+            toolbar.setTitle("Add Player");
+        }
+
+
         ((AppCompatActivity)getActivity()).setSupportActionBar(toolbar);
 
         ActionBar actionBar = ((AppCompatActivity)getActivity()).getSupportActionBar();
@@ -82,7 +108,7 @@ public class NewPlayerDialogFragment extends DialogFragment {
                                     .playerDAO()
                                     .insert(newPlayer);
                         } else {
-                            // update player
+                            // update existing player
                         }
                     }
                 }).start();
