@@ -8,8 +8,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.eloapp.database.AppDatabase;
 import com.example.eloapp.database.Player;
 
 import java.util.List;
@@ -58,6 +60,16 @@ public class PlayerRecyclerViewAdapter extends RecyclerView.Adapter<PlayerRecycl
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
                     bundle.putInt("player_pk", player.getPid());
+
+                    PlayerDetailsDialogFragment dialogFragment = new PlayerDetailsDialogFragment();
+                    dialogFragment.setArguments(bundle);
+
+                    AppCompatActivity activity = (AppCompatActivity) v.getContext();
+                    activity.getSupportFragmentManager()
+                            .beginTransaction()
+                            .add(android.R.id.content, dialogFragment)
+                            .addToBackStack(null)
+                            .commit();
                 }
             });
         }

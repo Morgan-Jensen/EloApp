@@ -22,4 +22,7 @@ public interface PlayerDAO {
 
     @Query("select * from Player where name=:name LIMIT 1")
     Player loadByName(String name);
+
+    @Query("select * from Player where pid=:pid LIMIT 1")
+    Player getByPid(int pid);
 }
