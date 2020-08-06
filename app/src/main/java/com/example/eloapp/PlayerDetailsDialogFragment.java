@@ -127,12 +127,26 @@ public class PlayerDetailsDialogFragment extends DialogFragment {
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 break;
-
             // user clicks on edit
             // create bundle
             // launch the new user dialog fragment and send bundle
+            case R.id.menu_update:
+                Bundle bundle = new Bundle();
+                bundle.putInt("player_pk", player.getPid());
 
+                NewPlayerDialogFragment c_fragment = new NewPlayerDialogFragment();
+                c_fragment.setArguments(bundle);
 
+                AppCompatActivity activity = (AppCompatActivity) root.getContext();
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(android.R.id.content, c_fragment)
+                        .addToBackStack(null)
+                        .commit();
+                dismiss();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
             // ALL DB TRANSACTION NEEDS TO BE DONE IN A THREAD!!!
         }
 

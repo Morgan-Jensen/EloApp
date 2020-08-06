@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -19,6 +20,9 @@ public interface PlayerDAO {
 
     @Delete
     void delete(Player player);
+
+    @Update
+    void update(Player player);
 
     @Query("select * from Player where name=:name LIMIT 1")
     Player loadByName(String name);

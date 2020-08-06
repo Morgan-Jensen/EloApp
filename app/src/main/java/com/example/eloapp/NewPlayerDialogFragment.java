@@ -108,7 +108,10 @@ public class NewPlayerDialogFragment extends DialogFragment {
                                     .playerDAO()
                                     .insert(newPlayer);
                         } else {
-                            // update existing player
+                            player.setName(txtPlayerName.getText().toString());
+                            AppDatabase.getInstance(getContext())
+                                    .playerDAO()
+                                    .update(player);
                         }
                     }
                 }).start();
