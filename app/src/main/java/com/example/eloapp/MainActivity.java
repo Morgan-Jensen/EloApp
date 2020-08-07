@@ -16,13 +16,18 @@ import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
-    FragmentManager fm;
+    private FragmentManager fm;
+    private MatchDialogFragment matchDialogFragment;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        matchDialogFragment = new MatchDialogFragment();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -48,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()) {
+        switch (item.getItemId()) {
             case R.id.action_create_match:
                 fm = getSupportFragmentManager();
                 fm.beginTransaction()
-                        .add(android.R.id.content, new MatchDialogFragment())
+                        .add(android.R.id.content, matchDialogFragment)
                         .addToBackStack(null)
                         .commit();
                 return true;
