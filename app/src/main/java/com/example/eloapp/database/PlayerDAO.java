@@ -15,6 +15,9 @@ public interface PlayerDAO {
     @Query("select * from Player")
     LiveData<List<Player>> getAll();
 
+    @Query("select * from Player")
+    Player[] getArray();
+
     @Insert
     void insert(Player player);
 
@@ -29,4 +32,9 @@ public interface PlayerDAO {
 
     @Query("select * from Player where pid=:pid LIMIT 1")
     Player getByPid(int pid);
+
+    @Query("select * from Player where name=:name LIMIT 1")
+    Player getByName(String name);
+
+
 }
