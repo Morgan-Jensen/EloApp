@@ -32,6 +32,8 @@ public class MatchDialogFragment extends DialogFragment {
 
     private TextView p1WinPercent;
     private TextView p2WinPercent;
+    private TextView p1Elo;
+    private TextView p2Elo;
 
     private Button matchButton;
     private Button p1WinsButton;
@@ -54,6 +56,8 @@ public class MatchDialogFragment extends DialogFragment {
         p2Spinner = (Spinner) root.findViewById(R.id.player2Spinner);
         p1WinPercent = (TextView) root.findViewById(R.id.txtP1Percent);
         p2WinPercent = (TextView) root.findViewById(R.id.txtP2Percent);
+        p1Elo = (TextView) root.findViewById(R.id.txtP1Elo);
+        p2Elo = (TextView) root.findViewById(R.id.txtP2Elo);
 
         new Thread(new Runnable() {
             @Override
@@ -93,25 +97,11 @@ public class MatchDialogFragment extends DialogFragment {
     }
 
     private void setMatch() {
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                p1 = AppDatabase.getInstance(getContext())
-//                        .playerDAO()
-//                        .getByName(p1Spinner.getSelectedItem().toString());
-//
-//                p2 = AppDatabase.getInstance(getContext())
-//                        .playerDAO()
-//                        .getByName(p2Spinner.getSelectedItem().toString());
-//            }
-//        }).start();
-
         p1 = players[p1Spinner.getSelectedItemPosition()];
         p2 = players[p2Spinner.getSelectedItemPosition()];
 
-//        p1 = (Player) p1Spinner.getSelectedItem();
-//        p2 = (Player) p2Spinner.getSelectedItem();
-
+        p1Elo.setText(Integer.toString(p1.getElo()));
+        p2Elo.setText(Integer.toString(p2.getElo()));
 
         calcOdds();
     }

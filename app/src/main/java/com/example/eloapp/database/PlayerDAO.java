@@ -27,14 +27,6 @@ public interface PlayerDAO {
     @Update
     void update(Player player);
 
-    @Query("select * from Player where name=:name LIMIT 1")
-    Player loadByName(String name);
-
     @Query("select * from Player where pid=:pid LIMIT 1")
     Player getByPid(int pid);
-
-    @Query("select * from Player where name=:name LIMIT 1")
-    Player getByName(String name);
-
-
 }
