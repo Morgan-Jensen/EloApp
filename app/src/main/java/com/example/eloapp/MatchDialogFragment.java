@@ -39,6 +39,7 @@ public class MatchDialogFragment extends DialogFragment {
     private TextView p1Elo;
     private TextView p2Elo;
     private TextView result;
+    private TextView errorMessage;
 
     private Button matchButton;
     private Button p1WinsButton;
@@ -66,6 +67,7 @@ public class MatchDialogFragment extends DialogFragment {
         p1Elo = (TextView) root.findViewById(R.id.txtP1Elo);
         p2Elo = (TextView) root.findViewById(R.id.txtP2Elo);
         result = (TextView) root.findViewById(R.id.txtResult);
+        errorMessage = (TextView) root.findViewById(R.id.txtErrorMessage);
 
         isMatchSet = false;
 
@@ -150,10 +152,17 @@ public class MatchDialogFragment extends DialogFragment {
     }
 
     private void setMatch() {
-        isMatchSet = true;
-
         p1 = players[p1Spinner.getSelectedItemPosition()];
         p2 = players[p2Spinner.getSelectedItemPosition()];
+
+        if (p1 == p2) {
+            errorMessage.setText("Please Select 2 Different Players!");
+            isMatchSet = false;
+            return;
+        } else {
+            errorMessage.setText("");
+            isMatchSet = true;
+        }
 
         p1Elo.setText(Integer.toString(p1.getElo()));
         p2Elo.setText(Integer.toString(p2.getElo()));
